@@ -1,0 +1,5 @@
+--compilers js:mocha-react-native/init
+--require ./test/globals
+--require ./test/mocks
+--require ./test/whitelist
+--require ./test/polyfills
