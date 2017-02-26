@@ -10,8 +10,18 @@ import ProgramDetailPage from '../../pages/ProgramDetailPage';
 import ProgramListPage from '../../pages/ProgramListPage';
 
 const Navigator = StackNavigator({
-  MainView: {screen: TabRoute},
-  ProgramListPage: {screen: ProgramListPage},
+  MainView: {screen: TabRoute, navigationOptions: {
+    title: (args) => {
+      console.log('args', args);
+      let navBar = args.getNavBarState();
+      let {index: navBarIndex} = navBar;
+
+      let title = navBar.routes[navBarIndex].routeName;
+
+      return title;
+    },
+  }},
+  ProgramListPage: {screen: ProgramListPage, navigationOptions: {title: 'Program List'}},
   ProgramDetailPage: {screen: ProgramDetailPage},
 }, {
   mode: 'modal',
@@ -27,6 +37,7 @@ const Navigator = StackNavigator({
         }
       }
       let right = (<View />);
+
       return {
         left,
         right,

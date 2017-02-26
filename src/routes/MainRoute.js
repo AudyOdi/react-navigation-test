@@ -33,6 +33,7 @@ class MainRoute extends Component {
       dispatch: this.props.dispatch,
       state: this.props.nav,
       index: this.props.nav.index,
+      getNavBarState: () => this._getNavBarState(),
       onSideMenuPressed: () => this._onDrawerOpen(),
     });
     let type = (Platform.OS === 'ios') ? 'static' : 'overlay';
@@ -70,6 +71,9 @@ class MainRoute extends Component {
   _onDrawerOpen() {
     this.setState({isDrawerOpen: true});
   }
+  _getNavBarState() {
+    return this.props.navBar;
+  }
 }
 
 function Content(props: Object) {
@@ -100,6 +104,7 @@ function Content(props: Object) {
 function mapStateToProps(state) {
   return {
     nav: state.mainNavigation,
+    navBar: state.tabNavigation,
   };
 }
 
